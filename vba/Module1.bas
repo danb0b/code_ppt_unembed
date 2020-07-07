@@ -404,11 +404,14 @@ Private Sub copyanimationsettings(shape1 As Shape, shape2 As Shape, slide As sli
     shape2.AnimationSettings.PlaySettings.StopAfterSlides = shape1.AnimationSettings.PlaySettings.StopAfterSlides
     shape2.AnimationSettings.PlaySettings.HideWhileNotPlaying = shape1.AnimationSettings.PlaySettings.HideWhileNotPlaying
     
-    shape2.AnimationSettings.AnimationOrder = shape1.AnimationSettings.AnimationOrder
+    On Error GoTo AnErrHandler1:
+        shape2.AnimationSettings.AnimationOrder = shape1.AnimationSettings.AnimationOrder
+    On Error GoTo 0
     shape2.AnimationSettings.SoundEffect.Type = shape1.AnimationSettings.SoundEffect.Type
     shape2.AnimationSettings.TextLevelEffect = shape1.AnimationSettings.TextLevelEffect
     shape2.AnimationSettings.TextUnitEffect = shape1.AnimationSettings.TextUnitEffect
     
+    On Error GoTo AnErrHandler1:
     slide.TimeLine.MainSequence.Item(shape2.AnimationSettings.AnimationOrder).Timing.Accelerate = slide.TimeLine.MainSequence.Item(shape1.AnimationSettings.AnimationOrder).Timing.Accelerate
     slide.TimeLine.MainSequence.Item(shape2.AnimationSettings.AnimationOrder).Timing.AutoReverse = slide.TimeLine.MainSequence.Item(shape1.AnimationSettings.AnimationOrder).Timing.AutoReverse
     slide.TimeLine.MainSequence.Item(shape2.AnimationSettings.AnimationOrder).Timing.BounceEnd = slide.TimeLine.MainSequence.Item(shape1.AnimationSettings.AnimationOrder).Timing.BounceEnd
@@ -421,18 +424,15 @@ Private Sub copyanimationsettings(shape1 As Shape, shape2 As Shape, slide As sli
     slide.TimeLine.MainSequence.Item(shape2.AnimationSettings.AnimationOrder).Timing.SmoothEnd = slide.TimeLine.MainSequence.Item(shape1.AnimationSettings.AnimationOrder).Timing.SmoothEnd
     slide.TimeLine.MainSequence.Item(shape2.AnimationSettings.AnimationOrder).Timing.SmoothStart = slide.TimeLine.MainSequence.Item(shape1.AnimationSettings.AnimationOrder).Timing.SmoothStart
     slide.TimeLine.MainSequence.Item(shape2.AnimationSettings.AnimationOrder).Timing.Speed = slide.TimeLine.MainSequence.Item(shape1.AnimationSettings.AnimationOrder).Timing.Speed
+    On Error GoTo 0
     
     On Error GoTo AnErrHandler1:
         slide.TimeLine.MainSequence.Item(shape2.AnimationSettings.AnimationOrder).Timing.TriggerBookmark = slide.TimeLine.MainSequence.Item(shape1.AnimationSettings.AnimationOrder).Timing.TriggerBookmark
-    On Error GoTo 0
-
-    slide.TimeLine.MainSequence.Item(shape2.AnimationSettings.AnimationOrder).Timing.TriggerDelayTime = slide.TimeLine.MainSequence.Item(shape1.AnimationSettings.AnimationOrder).Timing.TriggerDelayTime
-    
-    On Error GoTo AnErrHandler1:
+        slide.TimeLine.MainSequence.Item(shape2.AnimationSettings.AnimationOrder).Timing.TriggerDelayTime = slide.TimeLine.MainSequence.Item(shape1.AnimationSettings.AnimationOrder).Timing.TriggerDelayTime
         slide.TimeLine.MainSequence.Item(shape2.AnimationSettings.AnimationOrder).Timing.TriggerShape = slide.TimeLine.MainSequence.Item(shape1.AnimationSettings.AnimationOrder).Timing.TriggerShape
+        slide.TimeLine.MainSequence.Item(shape2.AnimationSettings.AnimationOrder).Timing.TriggerType = slide.TimeLine.MainSequence.Item(shape1.AnimationSettings.AnimationOrder).Timing.TriggerType
     On Error GoTo 0
     
-    slide.TimeLine.MainSequence.Item(shape2.AnimationSettings.AnimationOrder).Timing.TriggerType = slide.TimeLine.MainSequence.Item(shape1.AnimationSettings.AnimationOrder).Timing.TriggerType
     
 
 Exit Sub
