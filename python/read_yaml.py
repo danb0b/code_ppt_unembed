@@ -19,7 +19,7 @@ import pydevtools.video_info as vi
 def convert_videos(filename):
     with open(filename,'rb') as f:
         t = f.read().decode('utf-8-sig')
-    my_yaml = yaml.load(t)
+    my_yaml = yaml.load(t,Loader=yaml.FullLoader)
         
     root_directory = os.path.normpath(os.path.split(filename)[0])
 #    video_directory = os.path.join(root_directory,'videos')
