@@ -14,7 +14,7 @@ import time
 #import re
 #import math
 import glob
-import pydevtools.video_info as vi
+import video_tools.video_info as vi
 
 def convert_videos(filename):
     with open(filename,'rb') as f:
@@ -87,7 +87,8 @@ def convert_videos(filename):
                
     
     #                    s='ffmpeg -i "'+path+'" -ss '+t1+' -to '+t2+' -c:v libx264 -async 1 -preset ultrafast -crf 40 "'+video_filename+'"'                    
-                s='ffmpeg -i "'+path+'" ' + options + ' -c:v libx264 -async 1 -preset ultrafast -crf 30 "'+video_filename+'"'                    
+                # s='ffmpeg -i "'+path+'" ' + options + ' -c:v libx264 -async 1 -preset ultrafast -crf 30 "'+video_filename+'"'                    
+                s='ffmpeg -i "'+path+'" ' + options + ' -c:v libx264 -async 1 -preset veryslow -crf 30 "'+video_filename+'"'                    
     #                    s='ffmpeg -i "'+path+'" -ss '+t1+' -to '+t2+' -c:v libx264 -async 1 -preset veryslow -crf 40 "'+video_filename+'"'                    
                 print(s)
                 b=subprocess.run(s, shell=True, capture_output=True)
@@ -98,22 +99,34 @@ def convert_videos(filename):
 
                 b=subprocess.run(s3, shell=True, capture_output=True)
             else:
-                raise Exception('already exists')
+                raise Exception('already exists: '+video_filename)
                 print(video_filename)
 
 if __name__=='__main__':
     
-#    directory = 'C:/Users/danaukes/projects/class_foldable_robotics/modules'
-#    directory = 'C:/Users/danaukes/projects/class_foldable_robotics/modules/01-introduction'
-#    directory = 'C:/Users/danaukes/projects/class_foldable_robotics/modules/02-bio-inspired robotics I - biomechanics & locomotion'
-#    directory = 'C:/Users/danaukes/projects/class_foldable_robotics/modules/05-foldable robotics background'
-#    directory = 'C:/Users/danaukes/projects/class_foldable_robotics/modules/07-kinematics I'
-#    directory = 'C:\\Users\\danaukes\\projects\\class_foldable_robotics\\modules\\upcoming\\19-bio-inspired-robots II - terrestrial locomotion'
-#    directory = 'C:\\Users\\danaukes\\projects\\class_foldable_robotics\\modules\\upcoming\\Rapid Prototyping & Laser Cutting'
-#    directory = 'C:\\Users\\danaukes\\Dropbox (ASU)\\idealab\\presentations\\2020-01 Research Talk'
-#    directory = 'C:/Users/danaukes/Desktop/testpres'
-    directory = 'C:/Users/danaukes/Dropbox (ASU)/idealab/presentations/2020-03-05 Research Talk/reduced'
-#    for dirpath,dirnames,filenames in os.walk(directory):
-    a=glob.glob(directory+'/**/*-video-info.yaml',recursive=True)
+# #    directory = 'C:/Users/danaukes/projects/class_foldable_robotics/modules'
+# #    directory = 'C:/Users/danaukes/projects/class_foldable_robotics/modules/01-introduction'
+# #    directory = 'C:/Users/danaukes/projects/class_foldable_robotics/modules/02-bio-inspired robotics I - biomechanics & locomotion'
+# #    directory = 'C:/Users/danaukes/projects/class_foldable_robotics/modules/05-foldable robotics background'
+# #    directory = 'C:/Users/danaukes/projects/class_foldable_robotics/modules/07-kinematics I'
+# #    directory = 'C:\\Users\\danaukes\\projects\\class_foldable_robotics\\modules\\upcoming\\19-bio-inspired-robots II - terrestrial locomotion'
+# #    directory = 'C:\\Users\\danaukes\\projects\\class_foldable_robotics\\modules\\upcoming\\Rapid Prototyping & Laser Cutting'
+# #    directory = 'C:\\Users\\danaukes\\Dropbox (ASU)\\idealab\\presentations\\2020-01 Research Talk'
+# #    directory = 'C:/Users/danaukes/Desktop/testpres'
+#     directory = 'C:/Users/danaukes/Dropbox (ASU)/idealab/presentations/2020-03-05 Research Talk/reduced'
+# #    for dirpath,dirnames,filenames in os.walk(directory):
+#     a=glob.glob(directory+'/**/*-video-info.yaml',recursive=True)
+
+    a=[]
+    # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\01-introduction\\lecture-video-info.yaml')
+    # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\02-bio-inspired-robotics-I-biomechanics-and-locomotion\\lecture-video-info.yaml')
+    a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\05-foldable-robotics-background\\lecture-video-info.yaml')
+    a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\07-kinematics-I\\lecture-video-info.yaml')
+    a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\19-mechatronics-I-arduino-and-servos\\lecture-video-info.yaml')
+    a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\24-dash-robotics\\lecture-video-info.yaml')
+    # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\30-final-lecture\\lecture(2019)-video-info.yaml')
+    a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_upcoming\\19-bio-inspired-robots II - terrestrial locomotion\\13-bio-inspiration-video-info.yaml')
+    a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_upcoming\\Rapid Prototyping & Laser Cutting\\rapid-prototyping-and-laser-cutting-video-info.yaml')
+
     for item in a:
         convert_videos(item)
