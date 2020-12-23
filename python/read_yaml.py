@@ -99,9 +99,9 @@ def convert_videos(filename):
 
                 b=subprocess.run(s3, shell=True, capture_output=True)
             else:
-                raise Exception('already exists: '+video_filename)
-                print(video_filename)
-
+                # raise Exception('already exists: '+video_filename)
+                print('already exists: '+video_filename)
+                
 if __name__=='__main__':
     
 # #    directory = 'C:/Users/danaukes/projects/class_foldable_robotics/modules'
@@ -120,10 +120,10 @@ if __name__=='__main__':
     a=[]
     # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\01-introduction\\lecture-video-info.yaml')
     # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\02-bio-inspired-robotics-I-biomechanics-and-locomotion\\lecture-video-info.yaml')
-    a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\05-foldable-robotics-background\\lecture-video-info.yaml')
-    a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\07-kinematics-I\\lecture-video-info.yaml')
-    a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\19-mechatronics-I-arduino-and-servos\\lecture-video-info.yaml')
-    a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\24-dash-robotics\\lecture-video-info.yaml')
+    # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\05-foldable-robotics-background\\lecture-video-info.yaml')
+    # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\07-kinematics-I\\lecture-video-info.yaml')
+    # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\19-mechatronics-I-arduino-and-servos\\lecture-video-info.yaml')
+    # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\24-dash-robotics\\lecture-video-info.yaml')
     # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\30-final-lecture\\lecture(2019)-video-info.yaml')
     a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_upcoming\\19-bio-inspired-robots II - terrestrial locomotion\\13-bio-inspiration-video-info.yaml')
     a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_upcoming\\Rapid Prototyping & Laser Cutting\\rapid-prototyping-and-laser-cutting-video-info.yaml')
