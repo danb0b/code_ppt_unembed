@@ -1,0 +1,7 @@
+---
+header-includes:
+ - '\usetheme{metropolis}'
+ - '\makeatletter'
+ - '\beamer@ignorenonframefalse'
+ - '\makeatother'
+---
