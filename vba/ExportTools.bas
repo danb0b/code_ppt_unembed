@@ -431,7 +431,7 @@ Public Sub ConvertToMarkdown()
                         image_path = "thumbs/" & fnr & ".png"
                         video_path = "videos/" & fnr & ".mp4"
                         
-                        objTextFile.WriteText "[![Movie](" & image_path & ")](" & video_path & ")" & vbLf & vbLf
+                        objTextFile.WriteText "![[Video](" & video_path & ")](" & image_path & ")" & vbLf & vbLf
                         
                         ExtractVideoInfoInner objshape, yamlfile, Format(ctr, "0000")
 
@@ -444,14 +444,18 @@ Public Sub ConvertToMarkdown()
         
         Next objshape
 
+        On Error GoTo errMyErrorHandler2:
+            Notes = objSlide.NotesPage.Shapes.Placeholders(2).TextFrame.TextRange.Text
+            If (Notes <> "") Then
+                objTextFile.WriteText vbLf & vbLf & "::: notes" & vbLf & vbLf & Notes & vbLf & vbLf & ":::" & vbLf & vbLf
+            End If
+                
+        On Error GoTo 0
+        
         If objSlide.SlideShowTransition.Hidden Then
             objTextFile.WriteText "-->" & vbLf & vbLf
         End If
         
-        On Error GoTo errMyErrorHandler2:
-            Notes = objSlide.NotesPage.Shapes.Placeholders(2).TextFrame.TextRange.Text
-            objTextFile.WriteText vbLf & vbLf & "<!--" & vbLf & "Notes:" & vbLf & Notes & vbLf & "-->" & vbLf & vbLf
-        On Error GoTo 0
 
 DoCleanUp:
 

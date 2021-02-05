@@ -259,7 +259,8 @@ ii = 0
 Dim l As Integer
 
 
-For Each oSl In ActivePresentation.Slides
+'For Each oSl In ActivePresentation.Slides
+For ii = slide_index To (ActivePresentation.Slides.Count) Step 1
     oSl.Select
     For x = oSl.Shapes.Count To 1 Step -1
         Set oSh = oSl.Shapes(x)

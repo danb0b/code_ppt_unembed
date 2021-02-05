@@ -88,7 +88,7 @@ def convert_videos(filename):
     
     #                    s='ffmpeg -i "'+path+'" -ss '+t1+' -to '+t2+' -c:v libx264 -async 1 -preset ultrafast -crf 40 "'+video_filename+'"'                    
                 # s='ffmpeg -i "'+path+'" ' + options + ' -c:v libx264 -async 1 -preset ultrafast -crf 30 "'+video_filename+'"'                    
-                s='ffmpeg -i "'+path+'" ' + options + ' -c:v libx264 -async 1 -preset veryslow -crf 30 "'+video_filename+'"'                    
+                s='ffmpeg -i "'+path+'" ' + options + ' -c:v libx264 -async 1 -preset veryslow -crf 35 "'+video_filename+'"'                    
     #                    s='ffmpeg -i "'+path+'" -ss '+t1+' -to '+t2+' -c:v libx264 -async 1 -preset veryslow -crf 40 "'+video_filename+'"'                    
                 print(s)
                 b=subprocess.run(s, shell=True, capture_output=True)
@@ -125,8 +125,9 @@ if __name__=='__main__':
     # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\19-mechatronics-I-arduino-and-servos\\lecture-video-info.yaml')
     # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\24-dash-robotics\\lecture-video-info.yaml')
     # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\30-final-lecture\\lecture(2019)-video-info.yaml')
-    a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_upcoming\\19-bio-inspired-robots II - terrestrial locomotion\\13-bio-inspiration-video-info.yaml')
-    a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_upcoming\\Rapid Prototyping & Laser Cutting\\rapid-prototyping-and-laser-cutting-video-info.yaml')
+    # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_upcoming\\19-bio-inspired-robots II - terrestrial locomotion\\13-bio-inspiration-video-info.yaml')
+    # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_upcoming\\Rapid Prototyping & Laser Cutting\\rapid-prototyping-and-laser-cutting-video-info.yaml')
+    a.append(r'C:\Users\danaukes\Dropbox (ASU)\idealab\presentations\2021-02-09 Seminar\seminar.yaml')
 
     for item in a:
         convert_videos(item)
