@@ -127,7 +127,8 @@ if __name__=='__main__':
     # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_drafts\\30-final-lecture\\lecture(2019)-video-info.yaml')
     # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_upcoming\\19-bio-inspired-robots II - terrestrial locomotion\\13-bio-inspiration-video-info.yaml')
     # a.append('C:/Users/danaukes/projects/project_foldable_robotics/lectures\\_upcoming\\Rapid Prototyping & Laser Cutting\\rapid-prototyping-and-laser-cutting-video-info.yaml')
-    a.append(r'C:\Users\danaukes\Dropbox (ASU)\idealab\presentations\2021-02-09 Seminar\seminar.yaml')
+    # a.append(r'C:\Users\danaukes\Dropbox (ASU)\idealab\presentations\2021-02-09 Seminar\seminar.yaml')
+    a.append(r'C:\Users\danaukes\Dropbox (ASU)\idealab\presentations\2021-02-09 Seminar\scheidt-video-info.yaml')
 
     for item in a:
         convert_videos(item)

@@ -312,14 +312,13 @@ Public Sub ConvertToMarkdown()
     yamlfile.Open
         
     Dim ii As Integer
-    ii = 0
+    'ii = 0
 
+    Dim hideslide As Boolean
+    
     For Each objSlide In objPresentation.Slides
         objSlide.Select
-        
-        If objSlide.SlideShowTransition.Hidden Then
-            objTextFile.WriteText "<!-- " & vbLf & vbLf
-        End If
+
         
         
         
@@ -328,6 +327,19 @@ Public Sub ConvertToMarkdown()
         If objSlide.Shapes.HasTitle Then
           ttl = objSlide.Shapes.Title.TextFrame.TextRange.Text
         End If
+        
+        
+        If objSlide.SlideShowTransition.Hidden Then
+        hideslide = True
+      Else
+      hideslide = False
+      
+        
+        End If
+        
+        If hideslide Then
+                    objTextFile.WriteText "<!-- " & vbLf & vbLf
+End If
         
         objTextFile.WriteText "## " & (ttl) & vbLf & vbLf
 
@@ -405,7 +417,7 @@ Public Sub ConvertToMarkdown()
                 
                 IName = "img" & Format(ctr, "0000") & ".png"
                 Call objshape.Export(Pth & "\" & PresName & "-images\" & IName, ppShapeFormatPNG, , , ppRelativeToSlide)
-                objTextFile.WriteText "![](" & PresName & "-images/" & IName & "){width=100%}" & vbLf & vbLf
+                objTextFile.WriteText "![](" & PresName & "-images/" & IName & "){height=40%}" & vbLf & vbLf
                 ctr = ctr + 1
                 
             'ElseIf objshape.Type = msoEmbeddedOLEObject Then
@@ -431,7 +443,7 @@ Public Sub ConvertToMarkdown()
                         image_path = "thumbs/" & fnr & ".png"
                         video_path = "videos/" & fnr & ".mp4"
                         
-                        objTextFile.WriteText "![[Video](" & video_path & ")](" & image_path & ")" & vbLf & vbLf
+                        objTextFile.WriteText "![[Video](" & video_path & ")](" & image_path & "){height=40%}" & vbLf & vbLf
                         
                         ExtractVideoInfoInner objshape, yamlfile, Format(ctr, "0000")
 
@@ -452,9 +464,6 @@ Public Sub ConvertToMarkdown()
                 
         On Error GoTo 0
         
-        If objSlide.SlideShowTransition.Hidden Then
-            objTextFile.WriteText "-->" & vbLf & vbLf
-        End If
         
 
 DoCleanUp:
@@ -465,8 +474,11 @@ DoCleanUp:
         '    Exit For
         'End If
         
+        If hideslide Then
+            objTextFile.WriteText "-->" & vbLf & vbLf
+        End If
         
-    ii = ii + 1
+    'ii = ii + 1
     Next objSlide
 
     'objTextFile.Close
