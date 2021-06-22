@@ -620,21 +620,26 @@ Public Sub ExtractVideoInfoInner(objshape As Shape, objTextFile As Object, ctr A
     image_path = "thumbs/" & fnr & ".png"
     video_path = "videos/" & fnr & ".mp4"
     
-    objTextFile.WriteText "- source: """ & linked_path & """" & vbLf
-    objTextFile.WriteText "  start_point: " & objshape.MediaFormat.StartPoint & vbLf
-    objTextFile.WriteText "  end_point: " & objshape.MediaFormat.EndPoint & vbLf
-    objTextFile.WriteText "  length: " & objshape.MediaFormat.Length & vbLf
-    objTextFile.WriteText "  fade_in_duration: " & objshape.MediaFormat.FadeInDuration & vbLf
-    objTextFile.WriteText "  fade_out_duration: " & objshape.MediaFormat.FadeOutDuration & vbLf
-    objTextFile.WriteText "  loop: " & objshape.AnimationSettings.PlaySettings.LoopUntilStopped & vbLf
-    objTextFile.WriteText "  pause: " & objshape.AnimationSettings.PlaySettings.PauseAnimation & vbLf
-    objTextFile.WriteText "  play_on_entry: " & objshape.AnimationSettings.PlaySettings.PlayOnEntry & vbLf
-    objTextFile.WriteText "  rewind: " & objshape.AnimationSettings.PlaySettings.RewindMovie & vbLf
+    objTextFile.WriteText "- video_source: """ & linked_path & """" & vbLf
+    objTextFile.WriteText "  video_dest: " & video_path & vbLf
+    objTextFile.WriteText "  thumb_dest: " & image_path & vbLf
+    If objshape.MediaFormat.StartPoint > 0 Then
+        objTextFile.WriteText "  start_time: " & objshape.MediaFormat.StartPoint / 1000 & vbLf
+    End If
+    If objshape.MediaFormat.EndPoint <> objshape.MediaFormat.Length Then
+        objTextFile.WriteText "  end_time: " & objshape.MediaFormat.EndPoint / 1000 & vbLf
+    End If
+        
+    'objTextFile.WriteText "  length: " & objshape.MediaFormat.Length & vbLf
+    'objTextFile.WriteText "  fade_in_duration: " & objshape.MediaFormat.FadeInDuration & vbLf
+    'objTextFile.WriteText "  fade_out_duration: " & objshape.MediaFormat.FadeOutDuration & vbLf
+    'objTextFile.WriteText "  loop: " & objshape.AnimationSettings.PlaySettings.LoopUntilStopped & vbLf
+    'objTextFile.WriteText "  pause: " & objshape.AnimationSettings.PlaySettings.PauseAnimation & vbLf
+    'objTextFile.WriteText "  play_on_entry: " & objshape.AnimationSettings.PlaySettings.PlayOnEntry & vbLf
+    'objTextFile.WriteText "  rewind: " & objshape.AnimationSettings.PlaySettings.RewindMovie & vbLf
     'objTextFile.WriteText "    stop_after: " & objshape.AnimationSettings.PlaySettings.StopAfterSlides & vbLf
-    objTextFile.WriteText "  hide_while_not_playing: " & objshape.AnimationSettings.PlaySettings.HideWhileNotPlaying & vbLf
-    objTextFile.WriteText "  slide_number: " & ii & vbLf
-    objTextFile.WriteText "  thumb_dest_path: " & image_path & vbLf
-    objTextFile.WriteText "  video_dest_path: " & video_path & vbLf
+    'objTextFile.WriteText "  hide_while_not_playing: " & objshape.AnimationSettings.PlaySettings.HideWhileNotPlaying & vbLf
+    'objTextFile.WriteText "  slide_number: " & ii & vbLf
 End Sub
 
 Public Function ungroup() As Boolean
